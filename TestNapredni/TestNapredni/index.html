@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>MegaRent Online</title>
+		<script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+		<link rel="icon" type="image/png" href="slike/favicon.png">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		
+	</head>
+	<body ng-app="mainApp" ng-controller="mainController">
+		<header>
+			<nav class="mainNavigation">
+				<div class="logo">
+					<span class="redText">Mega</span>Rent
+				</div>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About Us</a></li>
+					<li><a href="#">Locations</a></li>
+					<li><a href="#">Catalog</a></li>
+					<li><a href="#">Terms of service</a></li>
+				</ul>
+			</nav>
+			<h1>Welcome to MegaRent</h1>
+			<h2>Yor best online rent-a-car.</h2>
+		</header>
+		<section class="catalog">
+			
+			<div>
+				<form class="form-inline" role="form" method="post" action="#">
+					<select name="gender">
+						<option>Mrs</option>
+						<option>Miss</option>
+						<option>Mr</option>
+						<option>Other</option>
+					</select>
+					<input type="text" name="name" placeholder="Your name" required=""></input>
+					<input type="email" name="email" placeholder="Your email" required=""></input>
+					<button type="submit" id="potvrdi">submit</button>
+				</form>
+			</div>
+			<h1>Selection from our catalog</h1>
+			
+			<div class="column" ng-hide="IsVisible1">
+				<img src="slike/car_civil.png">
+				<h2>Civil vehicles</h2>
+				<a class="button" href="#" ng-click="ShowHide1()">View offers</a>
+			</div>
+			<div class="column" ng-hide="IsVisible2">
+				<img src="slike/car_sport.png">
+				<h2>Sport cars</h2>
+				<a class="button" href="#" ng-click="ShowHide2()">View offers</a>
+			</div>
+			<div class="column" ng-hide="IsVisible3">
+				<img src="slike/car_suv.png">
+				<h2>SUV's</h2>
+				<a class="button" href="#" ng-click="ShowHide3()">View offers</a>
+			</div>
+			<div class="column" ng-hide="IsVisible4">
+				<img src="slike/car_van.png">
+				<h2>Transport vehicles</h2>
+				<a class="button" href="#" ng-click="ShowHide4()">View offers</a>
+			</div>
+		</section>
+		<section class="pricing" >
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12 col-md-4 col-lg-4" >
+						<input type="text" id="pretraga" ng-model="searchString" placeholder="Enter your search terms" />
+					</div>
+					<div class="col-sm-12 col-md-4 col-lg-4" >
+						<h1>Pricing</h1>
+					</div>
+				</div>
+			</div>
+			<div ng-model="searchString">
+				<a class="button pricingButton" href="">View pricing</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Car type</th>
+							<th>Day</th>
+							<th>Week</th>
+							<th>Month</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr  ng-repeat="car in kola.cars |filter: {id:1} | searchFor:searchString"  ng-hide="IsVisible1">
+							<td>{{car.type}}</td>
+							<td>{{car.day | currency : '€'}}</td>
+							<td>{{car.week | currency : '€'}}</td>
+							<td>{{car.month | currency : '€'}}</td>
+						</tr>
+						<tr  ng-repeat="car in kola.cars |filter: {id:2} | searchFor:searchString"  ng-hide="IsVisible2">
+							<td>{{car.type}}</td>
+							<td>{{car.day | currency : '€'}}</td>
+							<td>{{car.week | currency : '€'}}</td>
+							<td>{{car.month | currency : '€'}}</td>
+						</tr>
+						<tr  ng-repeat="car in kola.cars | filter: {id:3} | searchFor:searchString"  ng-hide="IsVisible3">
+							<td>{{car.type}}</td>
+							<td>{{car.day | currency : '€'}}</td>
+							<td>{{car.week | currency : '€'}}</td>
+							<td>{{car.month | currency : '€'}}</td>
+						</tr>
+						<tr  ng-repeat="car in kola.cars | filter: {id:4} | searchFor:searchString "  ng-hide="IsVisible4">
+							<td>{{car.type}}</td>
+							<td>{{car.day | currency : '€'}}</td>
+							<td>{{car.week | currency : '€'}}</td>
+							<td>{{car.month | currency : '€'}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+		<footer>
+
+			<div class="logo">
+				<span class="redText">Mega</span>Rent
+			</div>
+			<div class="container-fluid">
+			<div class="col-sm-12 col-md-6 col-lg-6">
+			<div class="info">
+				North Road 16b<br>
+				East London<br>
+				United Kingdom
+			</div>
+			</div>
+			
+			<div class="col-sm-12 col-md-6 col-lg-6">
+			<google-map pbcode="'!1m18!1m12!1m3!1d3022.1422928551406!2d-73.985131!3d40.758894999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes+Square!5e0!3m2!1sen!2srs!4v1463731122854'" ></google-map>
+			</div>
+		</div>
+		<!--iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.5979329453903!2d-0.11981304853612455!3d51.50224537953437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604c786e58ad3%3A0x109d99b6417b615f!2sEast%2C+Lambeth%2C+London+SE1%2C+UK!5e0!3m2!1sen!2srs!4v1459170512535" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe-->
+	</footer>
+	<script src="i18n/angular-locale_de-de.js"></script>
+	<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.min.js">
+	</script>
+	<script src="js/mainApp.js"></script>
+	<script type="text/javascript" src="js/mainController.js"></script>
+
+</body>
+</html>
